@@ -11,7 +11,7 @@ public class Planet {
     private String gravity;
     private String terrain;
     private Integer surface_water;
-    private Integer population;
+    private long population;
     private String[] residents;
     private String[] films;
     private String created;
@@ -24,7 +24,7 @@ public class Planet {
     }
 
     public Planet(String name, Integer rotation_period, Integer orbital_period, Integer diameter, String climate,
-                  String gravity, String terrain, Integer surface_water, Integer population, String[] residents,
+                  String gravity, String terrain, Integer surface_water, long population, String[] residents,
                   String[] films, String created, String edited, String url) {
         this.name = name;
         this.rotation_period = rotation_period;
@@ -126,11 +126,11 @@ public class Planet {
         this.surface_water = surface_water;
     }
 
-    public Integer getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
-    public void setPopulation(Integer population) {
+    public void setPopulation(long population) {
         this.population = population;
     }
 

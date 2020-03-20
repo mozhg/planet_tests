@@ -35,6 +35,17 @@ public class BaseTest {
         }
     }
 
+    @Step("Проверяем жителей на планете Naboo, чтобы количество резидентов на планете {planet} было равно {quantity}")
+    protected void checkIsResidentQuantityEqualsNumber(Planet planet, Integer quantity) {
+        if (planet.getResidents().length == quantity) {
+            logger.info("Количество резидентов на планете "
+                    + planet.getName() + " равно " + quantity);
+        } else {
+            logger.info("Количество резидентов на планете "
+                    + planet.getName() + " НЕ равно " + quantity);
+        }
+    }
+
     public Boolean isThereSomeActionOnAPlanetXInEpisodeY(Planet planet, Integer episode) {
         String[] filmsWithPlanet = planet.getFilms();
         logger.info("Список фильмов с планетой " + planet.getName() + " " + Arrays.toString(planet.getFilms()));

@@ -3,7 +3,7 @@ package tests.tcs;
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
 import models.Planet;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import tests.BaseTest;
 
 import java.util.logging.Logger;
