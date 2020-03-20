@@ -21,6 +21,7 @@ public class BaseTest {
             planet = restTemplate.getForObject("https://swapi.co/api/planets/" + planetNumber, Planet.class);
         } catch (Exception e) {
             logger.warning("Не удалось получить планету");
+            throw new AssertionError("Не удалось получить планету");
         }
         return planet;
     }
@@ -33,6 +34,7 @@ public class BaseTest {
             planet = restTemplate.getForObject(planetUrl, Planet.class);
         } catch (Exception e) {
             logger.warning("Не удалось получить планету");
+            throw new AssertionError("Не удалось получить планету");
         }
         return planet;
     }
@@ -45,6 +47,7 @@ public class BaseTest {
             film = restTemplate.getForObject("https://swapi.co/api/films/" + episodeNumber, Film.class);
         } catch (Exception e) {
             logger.warning("Не удалось получить эпизод");
+            throw new AssertionError("Не удалось получить эпизод");
         }
         return film;
     }
@@ -55,7 +58,9 @@ public class BaseTest {
             logger.info("Действия на планете "
                     + planet.getName() + " происходят в эпизоде " + episode);
         } else {
-            logger.info("Действия на планете "
+            logger.warning("Действия на планете "
+                    + planet.getName() + " НЕ происходят в эпизоде " + episode);
+            throw new AssertionError("Действия на планете "
                     + planet.getName() + " НЕ происходят в эпизоде " + episode);
         }
     }
@@ -66,7 +71,9 @@ public class BaseTest {
             logger.info("Количество резидентов на планете "
                     + planet.getName() + " равно " + quantity);
         } else {
-            logger.info("Количество резидентов на планете "
+            logger.warning("Количество резидентов на планете "
+                    + planet.getName() + " НЕ равно " + quantity);
+            throw new AssertionError("Количество резидентов на планете "
                     + planet.getName() + " НЕ равно " + quantity);
         }
     }

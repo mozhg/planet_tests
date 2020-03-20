@@ -27,7 +27,8 @@ public class TC2Planets extends BaseTest {
         if (isPlanetsEqualsList(planetsApi, planetsListToCompare)) {
             logger.info("В фильме есть все планеты из массива Planets");
         } else {
-            logger.info("В фильме есть НЕ все планеты из массива Planets");
+            logger.warning("В фильме есть НЕ все планеты из массива Planets");
+            throw new AssertionError("В фильме есть НЕ все планеты из массива Planets");
         }
     }
 }
