@@ -2,7 +2,6 @@ package tests;
 
 import io.qameta.allure.Step;
 import models.Planet;
-import org.junit.BeforeClass;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -13,12 +12,8 @@ public class BaseTest {
     private static Logger logger = Logger.getLogger(String.valueOf(BaseTest.class));
 
 
-    @BeforeClass
-    public static void setUp() {
-    }
-
     @Step("Получем планету {planetNumber}")
-    public Planet getPlanet(String planetNumber) {
+    protected Planet getPlanet(String planetNumber) {
         Planet planet = null;
         try {
             restTemplate = new RestTemplate();
@@ -30,7 +25,7 @@ public class BaseTest {
     }
 
     @Step("Проверяем, происходят ли какие действия на планете {planet} в {episode} серии фильма")
-    public void printIsThereSomeActionOnAPlanetXInEpisodeY(Planet planet, Integer episode) {
+    protected void printIsThereSomeActionOnAPlanetXInEpisodeY(Planet planet, Integer episode) {
         if (isThereSomeActionOnAPlanetXInEpisodeY(planet, episode)) {
             logger.info("Действия на планете "
                     + planet.getName() + " происходят в эпизоде " + episode);
@@ -39,7 +34,6 @@ public class BaseTest {
                     + planet.getName() + " НЕ происходят в эпизоде " + episode);
         }
     }
-
 
     public Boolean isThereSomeActionOnAPlanetXInEpisodeY(Planet planet, Integer episode) {
         String[] filmsWithPlanet = planet.getFilms();

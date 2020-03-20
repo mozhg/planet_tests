@@ -12,7 +12,6 @@ public class TC1Tatooine extends BaseTest {
     private static Logger logger = Logger.getLogger(String.valueOf(TC1Tatooine.class));
     private int episode;
 
-
     @Test
     @Description("Выбираем планету «Tatooine» и проверяем, происходят ли какие действия на планете «Tatooine» в 4 серии фильма")
     @Story("TC1: Tatooine")
