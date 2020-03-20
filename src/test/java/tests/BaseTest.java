@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Step;
+import models.Film;
 import models.Planet;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,6 +23,18 @@ public class BaseTest {
             logger.warning("Не удалось получить планету");
         }
         return planet;
+    }
+
+    @Step("Получем эпизод {episodeNumber}")
+    protected Film getFilm(String episodeNumber) {
+        Film film = null;
+        try {
+            restTemplate = new RestTemplate();
+            film = restTemplate.getForObject("https://swapi.co/api/films/" + episodeNumber, Film.class);
+        } catch (Exception e) {
+            logger.warning("Не удалось получить эпизод");
+        }
+        return film;
     }
 
     @Step("Проверяем, происходят ли какие действия на планете {planet} в {episode} серии фильма")
@@ -55,5 +68,29 @@ public class BaseTest {
             i++;
         }
         return false;
+    }
+
+    @Step("Сравниваем планеты, хранимые в виде ссылок Api в массиве {planetsApi} с массивом Planets {planetsListToCompare}")
+    public Boolean isPlanetsEqualsList(String[] planetsApi, String[] planetsListToCompare) {
+        int i = 0;
+        int j = 0;
+        int eqq = 0;
+        String[] planets = {""};
+        while (i < planetsApi.length) {
+            planets[i] = getPlanet(planetsApi[i]).getName();
+            i++;
+        }
+        i = 0;
+        while (i < planetsListToCompare.length) {
+            while (j < planets.length) {
+                if (planetsListToCompare[i].equals(planets[j])) {
+                    eqq++;
+                    break;
+                }
+                j++;
+            }
+            i++;
+        }
+        return eqq == planetsListToCompare.length;
     }
 }

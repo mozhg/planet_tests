@@ -9,7 +9,7 @@ import tests.BaseTest;
 import java.util.logging.Logger;
 
 public class TC3Naboo extends BaseTest {
-    private static Logger logger = Logger.getLogger(String.valueOf(TC1Tatooine.class));
+    private static Logger logger = Logger.getLogger(String.valueOf(TC3Naboo.class));
 
 
     @Test
