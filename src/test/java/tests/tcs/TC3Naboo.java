@@ -17,7 +17,7 @@ public class TC3Naboo extends BaseTest {
     @Story("TC3: Naboo")
     public void isNabooResidentsQuantityEquals11Test() {
         logger.info("Выбираем планету «Naboo» и выводим");
-        Planet planet = getPlanet("8");
+        Planet planet = getPlanet(8);
         logger.info(String.valueOf(planet));
 
         checkIsResidentQuantityEqualsNumber(planet, 11);

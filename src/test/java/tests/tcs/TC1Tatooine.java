@@ -17,7 +17,7 @@ public class TC1Tatooine extends BaseTest {
     @Story("TC1: Tatooine")
     public void isThereSomeActionOnTatooineInEpisode4Test() {
         logger.info("Выбираем планету «Tatooine» и выводим");
-        Planet planet = getPlanet("1");
+        Planet planet = getPlanet(1);
         logger.info(String.valueOf(planet));
 
         episode = 4;

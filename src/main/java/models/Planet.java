@@ -24,7 +24,7 @@ public class Planet {
     }
 
     public Planet(String name, Integer rotation_period, Integer orbital_period, Integer diameter, String climate,
-                  String gravity, String terrain, Integer surface_water, long population, String[] residents,
+                  String gravity, String terrain, String surface_water, long population, String[] residents,
                   String[] films, String created, String edited, String url) {
         this.name = name;
         this.rotation_period = rotation_period;
@@ -33,7 +33,11 @@ public class Planet {
         this.climate = climate;
         this.gravity = gravity;
         this.terrain = terrain;
-        this.surface_water = surface_water;
+        if (surface_water.equals("unknown")) {
+            this.surface_water = 0;
+        } else {
+            this.surface_water = Integer.parseInt(surface_water);
+        }
         this.population = population;
         this.residents = residents;
         this.films = films;
@@ -122,8 +126,12 @@ public class Planet {
         return surface_water;
     }
 
-    public void setSurface_water(Integer surface_water) {
-        this.surface_water = surface_water;
+    public void setSurface_water(String surface_water) {
+        if (surface_water.equals("unknown")) {
+            this.surface_water = 0;
+        } else {
+            this.surface_water = Integer.parseInt(surface_water);
+        }
     }
 
     public long getPopulation() {

@@ -14,11 +14,23 @@ public class BaseTest {
 
 
     @Step("Получем планету {planetNumber}")
-    protected Planet getPlanet(String planetNumber) {
+    protected Planet getPlanet(int planetNumber) {
         Planet planet = null;
         try {
             restTemplate = new RestTemplate();
             planet = restTemplate.getForObject("https://swapi.co/api/planets/" + planetNumber, Planet.class);
+        } catch (Exception e) {
+            logger.warning("Не удалось получить планету");
+        }
+        return planet;
+    }
+
+    @Step("Получем планету {planetUrl}")
+    protected Planet getPlanet(String planetUrl) {
+        Planet planet = null;
+        try {
+            restTemplate = new RestTemplate();
+            planet = restTemplate.getForObject(planetUrl, Planet.class);
         } catch (Exception e) {
             logger.warning("Не удалось получить планету");
         }
@@ -75,13 +87,14 @@ public class BaseTest {
         int i = 0;
         int j = 0;
         int eqq = 0;
-        String[] planets = {""};
+        String[] planets  = planetsApi;
         while (i < planetsApi.length) {
             planets[i] = getPlanet(planetsApi[i]).getName();
             i++;
         }
         i = 0;
         while (i < planetsListToCompare.length) {
+            j=0;
             while (j < planets.length) {
                 if (planetsListToCompare[i].equals(planets[j])) {
                     eqq++;
